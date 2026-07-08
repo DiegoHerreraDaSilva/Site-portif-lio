@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { HeroGrid } from './components/HeroGrid';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { PageLoader } from './components/PageLoader';
 import { SEO } from './components/SEO';
 import { useScrollProgress } from './hooks/useScrollProgress';
 import { personSchema, websiteSchema } from './lib/schema';
@@ -50,7 +51,7 @@ function AnimatedRoutes() {
           animate="animate"
           exit="exit"
         >
-          <Suspense fallback={null}>
+          <Suspense fallback={<PageLoader />}>
             <Routes location={location}>
               <Route path="/" element={<Home />} />
               <Route path="/sobre" element={<Sobre />} />

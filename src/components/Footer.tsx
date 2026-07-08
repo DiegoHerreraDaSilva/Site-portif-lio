@@ -1,11 +1,18 @@
+import { useEffect, useState } from 'react';
 import { profile } from '../data/profile';
 import styles from './Footer.module.css';
 
 export function Footer() {
+  const [ready, setReady] = useState(false);
   const year = new Date().getFullYear();
 
+  useEffect(() => {
+    const timer = setTimeout(() => setReady(true), 400);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <footer className={styles.footer}>
+    <footer className={`${styles.footer} ${ready ? styles.visible : ''}`}>
       <div className={styles.inner}>
         <div className={styles.links}>
           <a href={`mailto:${profile.email}`} className={styles.link}>
