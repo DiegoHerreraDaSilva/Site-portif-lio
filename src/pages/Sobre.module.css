@@ -166,32 +166,48 @@
   transition: border-color var(--transition-fast),
               background var(--transition-fast);
   cursor: pointer;
+  outline: none;
+}
+
+.certItem:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
 }
 
 .certItem + .certItem {
   border-top: 1px solid var(--color-border);
 }
 
-.certItem:hover {
+.certItem:hover,
+.certItem:focus-visible {
   background: var(--color-surface);
 }
 
-.certItem:has(.certPreview):hover {
+.certItemOpen,
+.certItemOpen:hover {
   border-left-color: var(--color-primary);
+  background: var(--color-surface);
 }
 
 .certName {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-sm);
   font-size: 0.9375rem;
   color: var(--color-muted);
   padding: var(--space-md) var(--space-md);
   transition: color var(--transition-fast);
 }
 
-.certItem:hover .certName {
+.certItem:hover .certName,
+.certItemOpen .certName {
   color: var(--color-ink);
+}
+
+.certArrowWrap {
+  display: inline-flex;
+  flex-shrink: 0;
 }
 
 .certArrow {
@@ -200,11 +216,14 @@
   color: var(--color-muted);
   transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
               color var(--transition-fast);
-  flex-shrink: 0;
 }
 
-.certItem:hover .certArrow {
+.certItem:hover .certArrow,
+.certItemOpen .certArrow {
   color: var(--color-primary);
+}
+
+.certItemOpen .certArrow {
   transform: rotate(90deg);
 }
 
@@ -216,9 +235,22 @@
               opacity 0.25s ease;
 }
 
-.certItem:hover .certPreview {
+.certItemOpen .certPreview {
   grid-template-rows: 1fr;
   opacity: 1;
+}
+
+.certCloseHint {
+  display: none;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  margin-left: auto;
+}
+
+@media (pointer: coarse) {
+  .certItemOpen .certCloseHint {
+    display: inline;
+  }
 }
 
 .certPreviewInner {

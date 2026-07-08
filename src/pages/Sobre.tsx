@@ -1,3 +1,4 @@
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SEO } from '../components/SEO';
@@ -48,6 +49,30 @@ export default function Sobre() {
   const { ref: skillsRef, isVisible: skillsVis } = useScrollReveal();
   const { ref: certRef, isVisible: certVis } = useScrollReveal();
   const { ref: ctaRef, isVisible: ctaVis } = useScrollReveal();
+  const [openCert, setOpenCert] = useState<string | null>(null);
+  const certListRef = useRef<HTMLUListElement>(null);
+
+  const toggleCert = useCallback((name: string) => {
+    setOpenCert((prev) => (prev === name ? null : name));
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (certListRef.current && !certListRef.current.contains(e.target as Node)) {
+        setOpenCert(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpenCert(null);
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <div className={styles.page}>
@@ -156,14 +181,25 @@ export default function Sobre() {
               </div>
             ))}
           </div>
-          <ul className={styles.certList}>
+          <ul ref={certListRef} className={styles.certList}>
             {certifications.map((cert) => (
-              <li key={cert.name} className={styles.certItem}>
+              <li
+                key={cert.name}
+                className={`${styles.certItem} ${openCert === cert.name ? styles.certItemOpen : ''}`}
+                onClick={() => toggleCert(cert.name)}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCert(cert.name); } }}
+                role="button"
+                tabIndex={0}
+                aria-expanded={openCert === cert.name}
+              >
                 <span className={styles.certName}>
                   {cert.name}
-                  <svg className={styles.certArrow} viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                  <span className={styles.certArrowWrap}>
+                    <svg className={styles.certArrow} viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <span className={styles.certCloseHint}>(clique para fechar)</span>
+                  </span>
                 </span>
                 <div className={styles.certPreview}>
                   <div className={styles.certPreviewInner}>
