@@ -1,3 +1,5 @@
+import type { FormEvent } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { SEO } from '../components/SEO';
 import { profile } from '../data/profile';
@@ -6,6 +8,24 @@ import styles from './Contato.module.css';
 
 export default function Contato() {
   const { ref, isVisible } = useScrollReveal();
+  const [sent, setSent] = useState(false);
+
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { Accept: 'application/json' },
+    })
+      .then((res) => {
+        if (res.ok) setSent(true);
+        else alert('Erro ao enviar. Tente novamente.');
+      })
+      .catch(() => alert('Erro de conexão. Tente novamente.'));
+  }
 
   return (
     <div className={styles.page}>
@@ -64,22 +84,33 @@ export default function Contato() {
             </div>
           </div>
 
-          <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+          {sent ? (
+            <div className={styles.form}>
+              <h2 className={styles.cardTitle}>Mensagem enviada!</h2>
+              <p className={styles.sentText}>Obrigado pelo contato. Responderei em breve.</p>
+            </div>
+          ) : (
+          <form
+            className={styles.form}
+            action="https://formspree.io/f/xykqqeak"
+            method="POST"
+            onSubmit={handleSubmit}
+          >
             <h2 className={styles.cardTitle}>Envie uma mensagem</h2>
 
             <div className={styles.field}>
               <label htmlFor="nome" className={styles.label}>Nome</label>
-              <input type="text" id="nome" className={styles.input} placeholder="Seu nome" required />
+              <input type="text" id="nome" name="nome" className={styles.input} placeholder="Seu nome" required />
             </div>
 
             <div className={styles.field}>
               <label htmlFor="email" className={styles.label}>Email</label>
-              <input type="email" id="email" className={styles.input} placeholder="seu@email.com" required />
+              <input type="email" id="email" name="email" className={styles.input} placeholder="seu@email.com" required />
             </div>
 
             <div className={styles.field}>
               <label htmlFor="mensagem" className={styles.label}>Mensagem</label>
-              <textarea id="mensagem" className={styles.textarea} rows={5} placeholder="Sua mensagem..." required />
+              <textarea id="mensagem" name="mensagem" className={styles.textarea} rows={5} placeholder="Sua mensagem..." required />
             </div>
 
             <motion.button
@@ -91,6 +122,7 @@ export default function Contato() {
               Enviar Mensagem
             </motion.button>
           </form>
+          )}
         </div>
       </section>
     </div>

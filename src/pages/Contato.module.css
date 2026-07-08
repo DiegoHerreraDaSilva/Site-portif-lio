@@ -119,6 +119,12 @@
   padding: var(--space-xl);
 }
 
+.sentText {
+  color: var(--color-muted);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
 .field {
   margin-bottom: var(--space-lg);
 }
