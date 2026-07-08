@@ -1,0 +1,56 @@
+:root {
+  /* Colors - Dark theme */
+  --color-primary: oklch(0.580 0.160 150);
+  --color-primary-hover: oklch(0.640 0.160 150);
+  --color-bg: oklch(0.080 0.000 0);
+  --color-surface: oklch(0.135 0.008 150);
+  --color-surface-hover: oklch(0.160 0.010 150);
+  --color-ink: oklch(0.900 0.005 150);
+  --color-accent: oklch(0.720 0.150 80);
+  --color-accent-hover: oklch(0.780 0.150 80);
+  --color-muted: oklch(0.550 0.010 150);
+  --color-white: oklch(1.000 0.000 0);
+  --color-border: oklch(0.220 0.008 150);
+
+  /* Typography */
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Figtree', system-ui, sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  /* Layout */
+  --max-width: 1200px;
+  --header-height: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Z-index scale */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal-backdrop: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+
+  /* Shadows - darker, more subtle for dark mode */
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.3);
+  --shadow-md: 0 4px 12px oklch(0 0 0 / 0.4);
+  --shadow-lg: 0 8px 30px oklch(0 0 0 / 0.5);
+
+  /* Easing */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms var(--ease-out-quart);
+}

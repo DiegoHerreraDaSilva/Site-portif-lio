@@ -1,0 +1,166 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--header-height) var(--space-lg) var(--space-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 780px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease 0.2s, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.2s;
+}
+
+.heroVisible .heroContent {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.heroLabel {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-md);
+  max-width: none;
+}
+
+.heroName {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: -0.04em;
+  margin-bottom: var(--space-sm);
+  line-height: 1.1;
+}
+
+.heroNameAccent {
+  color: var(--color-primary);
+  filter: drop-shadow(0 0 12px oklch(0.58 0.16 150 / 0.35));
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 12px oklch(0.58 0.16 150 / 0.35)); }
+  50% { filter: drop-shadow(0 0 24px oklch(0.58 0.16 150 / 0.55)); }
+}
+
+.heroRole {
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  color: var(--color-muted);
+  margin-bottom: var(--space-sm);
+  max-width: none;
+}
+
+.heroLocation {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin-bottom: var(--space-xl);
+  max-width: none;
+  opacity: 0.7;
+}
+
+.heroActions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.btnPrimary:hover {
+  background: var(--color-primary-hover);
+  color: var(--color-white);
+}
+
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-sm) var(--space-lg);
+  border: 1px solid var(--color-border);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.btnOutline:hover {
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.about {
+  padding: var(--space-2xl) var(--space-lg);
+}
+
+.aboutInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.aboutVisible .aboutInner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.aboutHeading {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.aboutText {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--color-muted);
+  max-width: 65ch;
+}
+
+.aboutCta {
+  margin-top: var(--space-lg);
+}
+
+.aboutLink {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.aboutLink:hover {
+  color: var(--color-accent-hover);
+}
