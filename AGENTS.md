@@ -77,6 +77,6 @@ git add -A && git commit -m "..." && git push  # deploy automático
 
 ## Contato
 - Formulário: Formspree (`/f/xykqqeak`)
-- Email: `diegoherrerasilva12@gmail.com`
+- Email: `diego` + `herrerasilva12` + `@` + `gmail.com` (ofuscado no código)
 - LinkedIn: `/in/diegoherreradasilva`
 - GitHub: `/DiegoHerreraDaSilva`

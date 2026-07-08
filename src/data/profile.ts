@@ -3,7 +3,7 @@ export const profile = {
   role: 'Estagiário de Suporte de TI',
   location: 'São Bernardo do Campo, SP, Brasil',
   summary: `Sou estudante de Ciências da Computação e atuo como estagiário de Suporte de TI, buscando evoluir constantemente na área. Tenho experiência em identificação e solução de falhas, suporte técnico, desenvolvimento de softwares e automações com IA. Sou proativo, organizado, tenho facilidade para resolver problemas e absorver novos conhecimentos. Estou sempre em busca de aprimorar minhas habilidades e contribuir de forma eficiente para a equipe e para os usuários.`,
-  email: 'diegoherrerasilva12@gmail.com',
+  email: 'diego' + 'herrerasilva12' + '@' + 'gmail.com',
   linkedin: 'https://linkedin.com/in/diegoherreradasilva',
   github: 'https://github.com/DiegoHerreraDaSilva',
 };
