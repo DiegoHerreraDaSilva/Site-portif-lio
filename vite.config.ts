@@ -5,7 +5,7 @@ import VitePluginSitemap from 'vite-plugin-sitemap'
 const vercelUrl = process.env.VERCEL_URL
 const siteUrl = vercelUrl
   ? `https://${vercelUrl}`
-  : (process.env.VITE_SITE_URL || 'https://diegoherrera.dev')
+  : (process.env.VITE_SITE_URL || 'https://diegoherrerasilvadev.vercel.app')
 
 export default defineConfig({
   define: {
